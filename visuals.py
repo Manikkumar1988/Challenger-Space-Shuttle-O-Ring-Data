@@ -25,7 +25,7 @@ def ModelLearning(X, y):
     fig = pl.figure(figsize=(10,7))
 
     # Create three different models based on max_depth
-    for k, depth in enumerate([1,3,6,10]):
+    for k, depth in enumerate([1,2,3]):
         
         # Create a Decision tree regressor at max_depth = depth
         regressor = DecisionTreeRegressor(max_depth = depth)
@@ -33,7 +33,7 @@ def ModelLearning(X, y):
         # Calculate the training and testing scores
         sizes, train_scores, test_scores = curves.learning_curve(regressor, X, y, \
             cv = cv, train_sizes = train_sizes, scoring = 'r2')
-        
+
         # Find the mean and standard deviation for smoothing
         train_std = np.std(train_scores, axis = 1)
         train_mean = np.mean(train_scores, axis = 1)
@@ -60,7 +60,7 @@ def ModelLearning(X, y):
     ax.legend(bbox_to_anchor=(1.05, 2.05), loc='lower left', borderaxespad = 0.)
     fig.suptitle('Decision Tree Regressor Learning Performances', fontsize = 16, y = 1.03)
     fig.tight_layout()
-    fig.show()
+    #fig.show()
 
 
 def ModelComplexity(X, y):
